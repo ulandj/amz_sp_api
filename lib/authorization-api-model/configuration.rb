@@ -130,7 +130,7 @@ module AmzSpApi::AuthorizationApiModel
       @base_path = 'https://sellingpartnerapi-na.amazon.com/'
       @api_key = {}
       @api_key_prefix = {}
-      @timeout = 0
+      @timeout = 20
       @client_side_validation = true
       @verify_ssl = true
       @verify_ssl_host = true

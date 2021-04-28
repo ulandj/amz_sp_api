@@ -70,13 +70,14 @@ module AmzSpApi
         request_config[:secret_access_key] = config.aws_secret_access_key
       end
       signer = Aws::Sigv4::Signer.new(request_config)
-      signer.sign_request(http_method: http_method.to_s, url: url, body: body).headers
+      r = signer.sign_request(http_method: http_method.to_s, url: url, body: body).headers
+      r
     end
 
     def auth_headers(http_method, url, body)
-      signed_request_headers(http_method, url, body).merge({
-        'x-amz-access-token' => retrieve_lwa_access_token
-      })
+      signed_request_headers(http_method, url, body).merge(
+        { 'x-amz-access-token' => retrieve_lwa_access_token }
+      )
     end
   end
 end
